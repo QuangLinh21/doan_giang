@@ -1,0 +1,26 @@
+HTTrack3.49-2+htsswf+htsjava launched on Wed, 13 Sep 2023 09:55:45 at https://demo.dashboardpack.com/marketing-html/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://demo.dashboardpack.com/marketing-html/ -O1 "F:\nova\template" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/vendors/owl_carousel/css/owl.video.play.png (from https://demo.dashboardpack.com/marketing-html/vendors/owl_carousel/css/owl.carousel.css)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/vendors/font_awesome/webfonts/fa-brands-400.svg (from https://demo.dashboardpack.com/marketing-html/vendors/font_awesome/css/all.min.css)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/vendors/font_awesome/webfonts/fa-regular-400.svg (from https://demo.dashboardpack.com/marketing-html/vendors/font_awesome/css/all.min.css)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/vendors/font_awesome/webfonts/fa-solid-900.svg (from https://demo.dashboardpack.com/marketing-html/vendors/font_awesome/css/all.min.css)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/vendors/datatable/images/sort_both.png (from https://demo.dashboardpack.com/marketing-html/vendors/datatable/css/jquery.dataTables.min.css)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/vendors/datatable/images/sort_asc.png (from https://demo.dashboardpack.com/marketing-html/vendors/datatable/css/jquery.dataTables.min.css)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/vendors/datatable/images/sort_desc.png (from https://demo.dashboardpack.com/marketing-html/vendors/datatable/css/jquery.dataTables.min.css)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/vendors/datatable/images/sort_asc_disabled.png (from https://demo.dashboardpack.com/marketing-html/vendors/datatable/css/jquery.dataTables.min.css)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/vendors/datatable/images/sort_desc_disabled.png (from https://demo.dashboardpack.com/marketing-html/vendors/datatable/css/jquery.dataTables.min.css)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/img/progress/progress-bg.png (from https://demo.dashboardpack.com/marketing-html/css/style1.css)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/img/progress/design-progress-yellow.png (from https://demo.dashboardpack.com/marketing-html/css/style1.css)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/img/progress/design-progress-red.png (from https://demo.dashboardpack.com/marketing-html/css/style1.css)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/vendors/apex_chart/bar_active_1.js (from https://demo.dashboardpack.com/marketing-html/tilt.html)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/vendors/swiper_slider/css/swiper.min.css (from https://demo.dashboardpack.com/marketing-html/error_400.html)
+09:57:03	Error: 	"Not Found" (404) at link https://demo.dashboardpack.com/marketing-html/vendors/select2/css/select2.min.css (from https://demo.dashboardpack.com/marketing-html/error_400.html)
+
+HTTrack Website Copier/3.49-2 mirror complete in 1 minutes 18 seconds : 258 links scanned, 242 files written (15104054 bytes overall) [7768196 bytes received at 99592 bytes/sec], 11399574 bytes transferred using HTTP compression in 210 files, ratio 33%, 86.0 requests per connection
+(15 errors, 0 warnings, 0 messages)
