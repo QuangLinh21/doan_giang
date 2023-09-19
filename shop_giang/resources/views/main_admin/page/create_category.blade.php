@@ -20,7 +20,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Mô tả</label>
-                    <textarea class="form-control" required id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+                    <textarea class="form-control" required  name="description" rows="3"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="namecategory" class="form-label">Trạng thái</label>

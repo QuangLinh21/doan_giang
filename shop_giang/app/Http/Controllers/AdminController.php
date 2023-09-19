@@ -20,12 +20,8 @@ class AdminController extends Controller
 
    }
    public function index(){
-    return view('main_admin.layout.admin_login');
+    return view('main_admin.layout.main');
    }
-   public function show_dashboard(){
-     
-      return view('main_admin.layout.main');
-  }
   public function dashboard(Request $request){
    $admin_email = $request->admin_email;
    $admin_password = $request->password;

@@ -168,5 +168,23 @@
     <script src="{{asset('../public/backend/js/popper1.min.js')}}"></script>>
     <script src="{{asset('../public/backend/vendors/scroll/perfect-scrollbar.min.js')}}"></script>
     <script src="{{asset('../public/backend/vendors/scroll/scrollable-custom.js')}}"></script>
+    <script src="{{asset('../public/backend/ckeditor5-build-classic/ckeditor.js')}}"></script>
+
+    <script src="{{asset('../public/backend/vendors/datatable/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('../public/backend/vendors/datatable/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('../public/backend/vendors/datatable/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('../public/backend/vendors/datatable/js/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('../public/backend/vendors/datatable/js/jszip.min.js')}}"></script>
+    <script src="{{asset('../public/backend/vendors/datatable/js/pdfmake.min.js')}}"></script>
+    <script src="{{asset('../public/backend/vendors/datatable/js/vfs_fonts.js')}}"></script>
+    <script src="{{asset('../public/backend/vendors/datatable/js/buttons.html5.min.js')}}"></script>
+    <script>
+		ClassicEditor
+		.create(document.querySelector('#ckeditor1'))
+		.catch(error=>{
+			console.error(error);
+		})
+
+	</script>
 </body>
 </html>

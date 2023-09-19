@@ -1,55 +1,46 @@
 <nav class="sidebar vertical-scroll  ps-container ps-theme-default ps-active-y">
-    <div class="logo d-flex justify-content-between">
-        <a href="index-2.html"><img src="img/logo.png" alt></a>
+    <div class="logo d-flex justify-content-between" style="padding-bottom: 0; margin-bottom:0">
+        <a href="index-2.html"><img src="{{ URL::to('../public/backend/img/logo-main.jpg') }}"
+                style="width:200px; height:150px;" alt></a>
         <div class="sidebar_close_icon d-lg-none">
             <i class="ti-close"></i>
         </div>
     </div>
     <ul id="sidebar_menu">
-        <li class="mm-active">
+        <li class>
             <a class="has-arrow" href="#" aria-expanded="false">
-
                 <div class="icon_menu">
-                    <img src="img/menu-icon/dashboard.svg" alt>
+                    <img src="{{ URL::to('../public/backend/img/menu-icon/4.svg') }}" alt>
                 </div>
-                <span>Dashboard</span>
+                <span>Sản phẩm</span>
             </a>
             <ul>
-                <li><a class="active" href="index-2.html">Marketing</a></li>
-                <li><a href="index_2.html">Default</a></li>
-                <li><a href="index_3.html">Dark Menu</a></li>
+                <li><a href="{{ URL::to('/ad_category') }}">Danh sách</a></li>
+                <li><a href="{{ URL::to('/insert-category') }}">Thêm mới</a></li>
             </ul>
         </li>
         <li class>
             <a class="has-arrow" href="#" aria-expanded="false">
                 <div class="icon_menu">
-                    <img src="img/menu-icon/2.svg" alt>
+                    <img src="{{ URL::to('../public/backend/img/menu-icon/2.svg') }}" alt>
                 </div>
-                <span>Danh mục sản phẩm</span>
+                <span>Danh mục</span>
             </a>
             <ul>
-                <li><a href="{{URL::to('/ad_category')}}">Danh mục</a></li>
-                <li><a href="{{URL::to('/insert-category')}}">Thêm mới</a></li>
+                <li><a href="{{ URL::to('/ad_category') }}">Danh sách</a></li>
+                <li><a href="{{ URL::to('/insert-category') }}">Thêm mới</a></li>
             </ul>
         </li>
         <li class>
             <a class="has-arrow" href="#" aria-expanded="false">
                 <div class="icon_menu">
-                    <img src="img/menu-icon/3.svg" alt>
+                    <img src=" {{ URL::to('../public/backend/img/menu-icon/3.svg') }}" alt>
                 </div>
-                <span>UI Kits</span>
+                <span>Thương hiệu</span>
             </a>
             <ul>
-                <li><a href="colors.html">colors</a></li>
-                <li><a href="Alerts.html">Alerts</a></li>
-                <li><a href="buttons.html">Buttons</a></li>
-                <li><a href="modal.html">modal</a></li>
-                <li><a href="dropdown.html">Droopdowns</a></li>
-                <li><a href="Badges.html">Badges</a></li>
-                <li><a href="Loading_Indicators.html">Loading Indicators</a></li>
-                <li><a href="State_color.html">State color</a></li>
-                <li><a href="typography.html">Typography</a></li>
-                <li><a href="datepicker.html">Date Picker</a></li>
+                <li><a href="{{ URL::to('/admin_brand') }}">Danh sách</a></li>
+                <li><a href="{{ URL::to('/insert-brand') }}">Thêm mới</a></li>
             </ul>
         </li>
         <li class>

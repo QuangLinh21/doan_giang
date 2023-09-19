@@ -23,7 +23,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Mô tả</label>
-                        <textarea class="form-control" required id="exampleFormControlTextarea1" name="description" rows="3">{{ $item->description }}</textarea>
+                        <textarea class="form-control" required  id="ckeditor1" name="description" rows="3">{{ $item->description }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="namecategory" class="form-label">Vị trí</label>
@@ -31,7 +31,7 @@
                             value="{{ $item->place }}">
                     </div>
                     <div class="mb-3">
-                        <button class="btn btn-success" type="submit">Thêm mới</button>
+                        <button class="btn btn-success" type="submit">Cập nhật</button>
                     </div>
                 </div>
             </form>

@@ -7,6 +7,14 @@
                     <div class="main-title">
                         <h3 class="m-0">Quản lý danh mục</h3>
                     </div>
+                    <form>
+                        @csrf
+                        <div class="input-group">
+                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default" name="search" value="{{old('search')}}" placeholder="Tìm kiếm ...">
+                            <button type="submit" class="btn btn-success">search</button>
+                        </div>
+                    </form>
                     <div class="header_more_tool">
                         {{-- <a href="{{URL::to('/insert_category')}}">Thêm mới danh mục</a> --}}
                         <a href="{{ URL::to('/insert-category') }}">Thêm mới danh mục</a>
@@ -32,6 +40,7 @@
                         <thead>
 
                             <tr>
+                                <th>STT</th>
                                 <th scope="col">Mã sản phẩm</th>
                                 <th scope="col">Tên sản phẩm</th>
                                 <th scope="col">Mô tả</th>
@@ -44,6 +53,7 @@
                           
                             @foreach ($all_cate as $key => $item)
                                 <tr>
+                                    <td>{{$key++}}</td>
                                     <td class="nowrap">{{ $item->id_category }}</td>
                                     <td class="nowrap">{{ $item->name_category }}</td>
                                     <td>{{ $item->description }}</td>
@@ -51,11 +61,11 @@
                                         <?php
                                         if ($item->status == 0) {
                                         ?>
-                                            <a href="{{URL::to('active-cate/'.$item->status)}}" class="text-success ">Ẩn</a>
+                                            <a href="{{URL::to('active-cate/'.$item->id_category)}}" class="text-success ">Ẩn</a>
                                         <?php
                                         } else {
                                         ?>
-                                            <a href="{{URL::to('unactive-cate/'.$item->status)}}" class="text-warning ">Hiển Thị</a>
+                                            <a href="{{URL::to('unactive-cate/'.$item->id_category)}}" class="text-warning ">Hiển Thị</a>
                                         <?php
                                         }
                                         ?>
@@ -70,9 +80,13 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="data_Tables_paginate paging_simple_numbers mt-5">
+                        {{$all_cate->links('pagination::bootstrap-4') }}
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
+    
 @endsection

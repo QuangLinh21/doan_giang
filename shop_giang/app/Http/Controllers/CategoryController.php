@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
 {
-    public function admin_cate(){
-        $all_cate = DB::table('category')->get();
+    public function admin_cate(Request $request){
+        $key=$request->search;
+        $all_cate=CategoryModel::where('name_category','like','%'.$key.'%')->paginate(5)->appends(['search'=>$key]);
         return view('main_admin.page.admin_category')->with('all_cate',$all_cate);
     }
     public function create_cate(){
