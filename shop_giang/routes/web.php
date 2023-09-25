@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post('/admin_login_ac',[AdminController::class,'dashboard']);
+Route::get('/dashboard',[AdminController::class,'dashboard']);
+Route::post('/admin_login',[AdminController::class,'admin_dashboard']);
+Route::get('/logout',[AdminController::class,'logout']);
 //admin
 Route::get('/admin',[AdminController::class,'index']);
 //admin - category
@@ -40,3 +43,7 @@ Route::get('/edit-brand/{id_brand}',[BrandController::class,'edit_brand']);
 Route::post('/update-brand/{id_brand}',[BrandController::class,'update_brand']);
 Route::get('/active-brand/{id_brand}',[BrandController::class,'active_brand']);
 Route::get('/unactive-brand/{id_brand}',[BrandController::class,'unactive_brand']);
+//admin product 
+Route::get('/ad_product',[ProductController::class,'admin_product']);
+Route::get('/insert-product',[ProductController::class,'create_product']);
+Route::post('/add-product',[ProductController::class,'add_product']);

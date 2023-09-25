@@ -61,11 +61,11 @@
                                         <?php
                                         if ($item->status == 0) {
                                         ?>
-                                            <a href="{{URL::to('active-cate/'.$item->id_category)}}" class="text-success ">Ẩn</a>
+                                            <a href="{{URL::to('active-cate/'.$item->id_category)}}" class="btn btn-success text-white">Ẩn</a>
                                         <?php
                                         } else {
                                         ?>
-                                            <a href="{{URL::to('unactive-cate/'.$item->id_category)}}" class="text-warning ">Hiển Thị</a>
+                                            <a href="{{URL::to('unactive-cate/'.$item->id_category)}}" class="btn btn-warning text-white">Hiển Thị</a>
                                         <?php
                                         }
                                         ?>

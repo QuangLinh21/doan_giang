@@ -15,8 +15,8 @@
                 <span>Sản phẩm</span>
             </a>
             <ul>
-                <li><a href="{{ URL::to('/ad_category') }}">Danh sách</a></li>
-                <li><a href="{{ URL::to('/insert-category') }}">Thêm mới</a></li>
+                <li><a href="{{ URL::to('/ad_product') }}">Danh sách</a></li>
+                <li><a href="{{ URL::to('/insert-product') }}">Thêm mới</a></li>
             </ul>
         </li>
         <li class>

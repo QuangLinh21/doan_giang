@@ -62,12 +62,12 @@
                                         if ($item->status == 0) {
                                         ?>
                                         <a href="{{ URL::to('active-brand/' . $item->id_brand) }}"
-                                            class="text-success ">Ẩn</a>
+                                            class="btn btn-success text-white">Ẩn</a>
                                         <?php
                                         } else {
                                         ?>
                                         <a href="{{ URL::to('unactive-brand/' . $item->id_brand) }}"
-                                            class="text-warning ">Hiển Thị</a>
+                                            class="btn btn-warning  text-white">Hiển Thị</a>
                                         <?php
                                         }
                                         ?>
