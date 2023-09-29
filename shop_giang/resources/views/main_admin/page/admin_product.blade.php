@@ -65,7 +65,7 @@
                                     <td class="nowrap">{{ $item->name_product }}</td>
                                     <td class="nowrap">{{ $item->price }}</td>
                                     <td class="nowrap">{{ $item->description}}</td>
-                                    <td class="nowrap text-center"><img src="{{asset($item->product_img2)}}" style="width: 40px"></td>
+                                    <td class="nowrap text-center"><img src="{{asset($item->product_img1)}}" style="width: 40px"></td>
                                     <td class="nowrap  text-center"><img src="{{asset($item->product_img2)}}" style="width: 40px"></td>
                                     <td class="nowrap">{{ $item->status}}</td>
                                     <td class="text-center">
@@ -76,14 +76,14 @@
                                         <?php
                                         } else {
                                         ?>
-                                            <a href="{{URL::to('unactive-product/'.$item->id_product)}}" class="btn btn-warning text-white">Hiển Thị</a>
+                                            <a href="{{URL::to('unactive-product/'.$item->id_product)}}" class="btn btn-warning text-white">Hiện</a>
                                         <?php
                                         }
                                         ?>
                                     </td>
                                     <td class="nowrap">{{ $item->rating}}</td>
                                     <td>{{ $item->place }}</td>
-                                    <td><a href="{{ URL::to('edit-category/'.$item->id_product) }}"><i class="fa-solid fa-gear"></i></a></td>
+                                    <td><a href="{{ URL::to('edit-product/'.$item->id_product) }}"><i class="fa-solid fa-gear"></i></a></td>
                                     <td> <a href="{{ URL::to('delete-product/'.$item->id_product) }}"
                                             onclick="return confirm('Bạn có muốn xóa danh mục này không?')"><i
                                                 class="fa-solid fa-circle-xmark"></i></a> </td>

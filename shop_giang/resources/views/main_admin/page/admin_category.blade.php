@@ -44,19 +44,20 @@
                                 <th scope="col">Mã sản phẩm</th>
                                 <th scope="col">Tên sản phẩm</th>
                                 <th scope="col">Mô tả</th>
+                                <th scope="col">Ảnh</th>
                                 <th scope="col">Trạng thái</th>
                                 <th scope="col">Vị trí</th>
                                 <th scope="col" colspan="2">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
-                          
                             @foreach ($all_cate as $key => $item)
                                 <tr>
                                     <td>{{$key++}}</td>
                                     <td class="nowrap">{{ $item->id_category }}</td>
                                     <td class="nowrap">{{ $item->name_category }}</td>
                                     <td>{{ $item->description }}</td>
+                                    <td class="nowrap  text-center"><img src="{{asset($item->img)}}" style="width: 60px"></td>
                                     <td class="text-center">
                                         <?php
                                         if ($item->status == 0) {

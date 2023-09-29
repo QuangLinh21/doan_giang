@@ -20,12 +20,22 @@ class CategoryController extends Controller
     public function add_category(Request $request){
         // $data=CategoryModel::create($request);
         // return Redirect::to('/admin_category',compact($data));
-        $data=array();
+        $data = new CategoryModel();
         $data['name_category'] = $request->name_cate;
         $data['description'] = $request->description;
+        $data['img']=request('img');
+        if($request->hasFile('img')){
+            $file = $request->file('img');
+            //dặt tên cho file img1
+            $filename = time().'_'.$file->getClientOriginalName();
+            //định nghĩa dẫn ssex upload lên
+            $path_upload = 'uploads/categorys/';
+            $request->file('img')->move($path_upload,$filename);
+            $data -> product_img1 = $path_upload.$filename;
+        }
         $data['status'] = $request->status;
         $data['place'] = $request->place_cate;
-        DB::table('category')->insert($data);
+       $data ->save();
         return Redirect()->back()->with('message','Thêm mới thành công')->with('error','Thêm mới không thành công');
 
     }
@@ -39,12 +49,24 @@ class CategoryController extends Controller
         return view('main_admin.page.edit_category',compact('edit_cate',$edit_cate));
     }
     public function update_category(Request $request,$id_category){
-        $data = [];
+       $data = CategoryModel::findorFail($id_category);
         $data['name_category']=$request->name_cate;
         $data['description']=$request->description;
+        if($request->hasFile('img')){ //kiểm tra img có đc chọn
+            @unlink(public_path($data->img)); //xóa file cũ
+            // get new_image
+            $file = $request->file('img');
+            $filename = time().'_'.$file->getClientOriginalName(); // $file->getClientOriginalName() == tên ban đầu của image
+            $path_upload = 'uploads/categorys/';
+             // Thực hiện upload file
+             $request->file('img')->move($path_upload,$filename);
+             $data->img = $path_upload.$filename;
+    
+             $data->img = $path_upload.$filename; // gán giá trị ảnh mới cho thuộc tính image của đối tượng
+           }
         $data['place']=$request->place_cate;
-        DB::table('category')->where('id_category',$id_category)->update($data);
-        return redirect()->back()->with('message','Cập nhật danh mục thành công')->with('error','Cập nhật danh mục không thành công');
+        $data->save();
+        return redirect('ad_category')->with('message','Cập nhật danh mục thành công')->with('error','Cập nhật danh mục không thành công');
     }
     public function active_cate($id_category){
        DB::table('category')->where('id_category',$id_category)->update(['status'=>1]);

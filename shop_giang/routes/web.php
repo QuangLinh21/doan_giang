@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('/dashboard',[AdminController::class,'dashboard']);
 Route::post('/admin_login',[AdminController::class,'admin_dashboard']);
 Route::get('/logout',[AdminController::class,'logout']);
@@ -47,3 +46,12 @@ Route::get('/unactive-brand/{id_brand}',[BrandController::class,'unactive_brand'
 Route::get('/ad_product',[ProductController::class,'admin_product']);
 Route::get('/insert-product',[ProductController::class,'create_product']);
 Route::post('/add-product',[ProductController::class,'add_product']);
+Route::get('/edit-product/{id_product}',[ProductController::class,'edit_product']);
+Route::post('/update-product/{id_product}',[ProductController::class,'update_product']);
+Route::get('/delete-product/{id_product}',[ProductController::class,'delete_product']);
+Route::get('/active-product/{id_product}',[ProductController::class,'active_product']);
+Route::get('/unactive-product/{id_product}',[ProductController::class,'unactive_product']);
+
+
+// -------------------------------------------user--------------------------------------
+Route::get('/',[HomeController::class,'index']);

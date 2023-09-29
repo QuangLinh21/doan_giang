@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\ProductRequest;
 
 session_start();
 class AdminController extends Controller
@@ -31,7 +30,7 @@ class AdminController extends Controller
    public function admin_dashboard(Request $request)
    {
       $admin_email = $request->admin_email;
-      $admin_password = $request->password;
+      $admin_password = $request->password_ad;
       $result = DB::table('admin')->where('email_admin', $admin_email)->where('password', $admin_password)->first();
       //first() là lấy ra 1 bản ghi duy nhất
       if ($result) {
