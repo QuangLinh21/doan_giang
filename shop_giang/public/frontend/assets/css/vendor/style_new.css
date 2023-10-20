@@ -5,3 +5,35 @@
     padding: 10px 12px !important;
     display: block;
 }
+.axil-product .thumbnail a img {
+    height: 310px !important;
+}
+.mb--30 {
+    margin-bottom: 0px !important;
+}
+.data_Tables_paginate {
+    display: flex;
+    justify-content: center;
+}
+.data_Tables_paginate nav .pagination .page-item .page-link{
+    font-size: 16px !important;
+    padding: 5px 15px;
+}
+.active>.page-link, .page-link.active {
+    z-index: 3;
+    color: white;
+    background-color: #FF497C;
+    border-color: #FF497C;
+}
+.testimonial-style-one .media .thumbnail img {
+    height: 84px !important;
+}
+.axil-shop-sidebar .product-categories ul li a::before{
+    display: none !important;
+}
+.axil-signin-form-wrap{
+    margin: 140px -30px -30px !important;
+}
+.axil-signin-form {
+    padding: 30px !important; 
+}

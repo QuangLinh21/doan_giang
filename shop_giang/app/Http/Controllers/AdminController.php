@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
-use App\Http\Requests\ProductRequest;
+use App\Http\Requests\LoginRequest;
 
 session_start();
 class AdminController extends Controller
@@ -27,10 +27,11 @@ class AdminController extends Controller
    public function dashboard(){
       return view('main_admin.layout.admin_login');
    }
-   public function admin_dashboard(Request $request)
+   public function admin_dashboard(LoginRequest $request)
    {
-      $admin_email = $request->admin_email;
-      $admin_password = $request->password_ad;
+
+      $admin_email = $request->username;
+      $admin_password = $request->password;
       $result = DB::table('admin')->where('email_admin', $admin_email)->where('password', $admin_password)->first();
       //first() là lấy ra 1 bản ghi duy nhất
       if ($result) {

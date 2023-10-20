@@ -23,9 +23,9 @@
                             <div class="profile_author_name">
                                 <p>QUản trị viên</p>
                                 <h5>@php
-                                    $admin_name = Session::get('name_admin');
-                                    if($admin_name){
-                                        echo $admin_name;
+                                    $name_admin = Session::get('name_admin');
+                                    if($name_admin){
+                                        echo $name_admin;
                                     }
                                  @endphp
                                  </h5>

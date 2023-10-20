@@ -1,41 +1,6 @@
 <header class="header axil-header header-style-1">
     <div class="axil-header-top">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-sm-6">
-                    <div class="header-top-dropdown">
-                        <div class="dropdown">
-                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                English
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">English</a></li>
-                                <li><a class="dropdown-item" href="#">Arabic</a></li>
-                                <li><a class="dropdown-item" href="#">Spanish</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown">
-                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                USD
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">USD</a></li>
-                                <li><a class="dropdown-item" href="#">AUD</a></li>
-                                <li><a class="dropdown-item" href="#">EUR</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="header-top-link">
-                        <ul class="quick-link">
-                            <li><a href="#">Help</a></li>
-                            <li><a href="sign-up.html">Join Us</a></li>
-                            <li><a href="sign-in.html">Sign In</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- Start Mainmenu Area  -->
@@ -44,11 +9,12 @@
         <div class="container">
             <div class="header-navbar">
                 <div class="header-brand">
-                    <a href="{{URL::to('/')}}" class="logo logo-dark">
-                        <img src="{{URL::to('../public/frontend/assets/images/logo/logo.png')}}" alt="Site Logo">
+                    <a href="{{ URL::to('/') }}" class="logo logo-dark">
+                        <img src="{{ URL::to('../public/frontend/assets/images/logo/logo.png') }}" alt="Site Logo">
                     </a>
-                    <a href="{{URL::to('/')}}" class="logo logo-light">
-                        <img src="{{URL::to('../public/frontend/assets/images/logo/logo-light.png')}}" alt="Site Logo">
+                    <a href="{{ URL::to('/') }}" class="logo logo-light">
+                        <img src="{{ URL::to('../public/frontend/assets/images/logo/logo-light.png') }}"
+                            alt="Site Logo">
                     </a>
                 </div>
                 <div class="header-main-nav">
@@ -56,30 +22,29 @@
                     <nav class="mainmenu-nav">
                         <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
                         <div class="mobile-nav-brand">
-                            <a href="{{URL::to('/')}}" class="logo">
+                            <a href="{{ URL::to('/') }}" class="logo">
                                 <img src="assets/images/logo/logo.png" alt="Site Logo">
                             </a>
                         </div>
                         <ul class="mainmenu">
                             <li>
-                                <a href="#">Trang chủ</a>
+                                <a href="{{URL::to('/')}}">Trang chủ</a>
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="#">Sản phẩm</a>
                                 <ul class="axil-submenu">
-                                    <li><a href="#">Quần - Áo</a></li>
-                                    <li><a href="#">Giày</a></li>
-                                    <li><a href="#">Tất thể thao</a></li>
-                                    <li><a href="#">Account</a></li>
-                                    <li><a href="#">Găng tay</a></li>
-                                    <li><a href="#">Môn thể thao khác</a></li>
+                                    @foreach ($category_list as $item)
+                                        <li ><a href="{{URL::to('category_main/'.$item->id_category)}}">{{$item->name_category}}</a></li>
+                                    @endforeach
+
                                 </ul>
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="#">Thương Hiệu</a>
                                 <ul class="axil-submenu">
-                                    <li><a href="blog.html">Adidas</a></li>
-                                    <li><a href="blog-grid.html">Nike</a></li>
+                                    @foreach ($brand_list as $item)
+                                        <li><a href="{{URL::to('brands_main/'.$item->id_brand)}}">{{$item->name_brand}}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
                             <li><a href="contact.html">Tin tức</a></li>
@@ -101,8 +66,8 @@
                             </a>
                         </li>
                         <li class="shopping-cart">
-                            <a href="#" class="cart-dropdown-btn">
-                                <span class="cart-count">3</span>
+
+                            <a href="{{URL::to('show-cart')}}" >
                                 <i class="flaticon-shopping-cart"></i>
                             </a>
                         </li>
@@ -127,9 +92,10 @@
                                     </li>
                                 </ul>
                                 <div class="login-btn">
-                                    <a href="sign-in.html" class="axil-btn btn-bg-primary">Login</a>
+                                    <a href="{{URL::to('login_acc')}}" class="axil-btn btn-bg-primary">Login</a>
                                 </div>
-                                <div class="reg-footer text-center">No account yet? <a href="sign-up.html" class="btn-link">REGISTER HERE.</a></div>
+                                <div class="reg-footer text-center">No account yet? 
+                                    <a href="{{URL::to('register')}}" class="btn-link">REGISTER HERE.</a></div>
                             </div>
                         </li>
                         <li class="axil-mobile-toggle">

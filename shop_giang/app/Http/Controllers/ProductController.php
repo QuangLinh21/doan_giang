@@ -7,8 +7,9 @@ use App\Models\CategoryModel;
 use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
-
+use Cart;
 class ProductController extends Controller
 {
     public function admin_product(Request $request){
@@ -52,8 +53,8 @@ class ProductController extends Controller
             $product -> product_img2 = $path_upload.$filename;
         }
         $product['status'] = $request->status;
-       
-        if( $product->save()){
+        $product->save();
+        if($product){
             return redirect()->back()->with('message','Thêm mới thành công');
         }
         else{
@@ -63,7 +64,6 @@ class ProductController extends Controller
     }
     public function edit_product($id_product){
          $edit_product = ProductModel::find($id_product);
-        
         // $edit_product = ProductModel::where('id_product',$id_product)->first();
         $id_cate = CategoryModel::select('id_category','name_category')->get();
         $id_brand = BrandModel::select('id_brand','name_brand')->get();
@@ -71,6 +71,7 @@ class ProductController extends Controller
         return view('main_admin.page.edit_product',compact('edit_product','id_cate','id_brand'));
     }
     public function update_product(Request $request, $id_product){
+        dd($id_product);
         $product = ProductModel::findorFail($id_product);
         $product->name_product = $request->input('name_product');
         $product->id_category = $request->input('id_cate');
@@ -120,5 +121,79 @@ class ProductController extends Controller
      public function unactive_product($id_product){
         ProductModel::where('id_product',$id_product)->update(['status'=>0]);
          return Redirect()->back()->with('message','Cập nhật trạng thái thành công')->with('error','Cập nhật trạng thái không thành công !');
+     }
+     public function show_product_detail(Request $request, $id_product){
+        $product = ProductModel::find($id_product);
+        return response()->json($product);
+     }
+     public function quickview(Request $request){
+        $id_product = $request->product_id;
+        $product = ProductModel::find($id_product);
+        $output['name_product'] = $product->name_product;
+        $output['id_product'] = $product->id_product;
+        $output['product_img1'] = '<img class="hover-img" src="{{ asset($item->product_img1) }}" alt="Product Images" height="310px">';;
+        $output['product_img2'] = '<img class="hover-img" src="{{ asset($item->product_img2) }}" alt="Product Images" height="310px">';
+        $output['price'] =  $product->price;
+        echo json_encode($output);
+     }
+    //  public function detail_product($id_product){
+    //     // $info_product = DB::table('common_product')->where('id_product',$id_product)->get();
+    //     $info_product = DB::table('product')
+    //     ->join('common_product', 'product.id_product','=', 'common_product.id_product')
+    //     ->join('size', 'common_product.id_size','=','size.id_size')
+    //     ->join('color','common_product.id_color','=','color.id_color')
+    //     ->select('product.*','size.id_size','size.name_size','color.id_color','color.name_color')
+    //     ->where('product.id_product',$id_product)->get();
+    //     return view('user_page.pages.products.detail_product')->with('info_product',$info_product);
+    //  }
+     public function detail_product($id_product){
+        // $info_product = DB::table('common_product')->where('id_product',$id_product)->get();
+        $brand = BrandModel::orderBy('place','ASC')->get();
+        $category = CategoryModel::orderBy('place','ASC')->get();
+        $info_product = DB::table('product')->where('product.id_product',$id_product)->get();
+        $option_product = DB::table('common_product')
+        ->join('size', 'common_product.id_size','=','size.id_size')
+        ->where('common_product.id_product',$id_product)->get();
+        return view('user_page.pages.products.detail_product')->with('info_product',$info_product)
+        ->with('option_product',$option_product)->with('category_list', $category)->with('brand_list', $brand);
+     }
+     public function save_cart(Request $request){
+        $brand = BrandModel::orderBy('place','ASC')->get();
+        $category = CategoryModel::orderBy('place','ASC')->get();
+        $product_id = $request->product_id_hidden;
+        $quantity = $request->qty;
+        $size=$request->size;
+        $color=$request->color;
+        // dd($product_id,$size,$color,$quantity);
+        $product_info = DB::table('product')->where('id_product',$product_id)->first();
+        // Cart::add('293ad', 'Product 1', 1, 9.99, 550);
+        // Cart::destroy();
+        $data['id'] =  $product_info->id_product;
+        $data['qty'] =  $quantity;
+        $data['name'] =  $product_info->name_product;
+        $data['price'] =  $product_info->price;
+        $data['weight'] =  $product_info->price;
+        $data['options']['images'] =  $product_info->product_img1;
+        $data['options']['size'] =  $size;
+        $data['options']['color'] =  $color;
+        Cart::add($data);
+        Cart::setGlobalTax(10);
+        Cart::count();
+        return redirect::to('/show-cart');
+     }
+     public function show_cart(){
+        $brand = BrandModel::orderBy('place','ASC')->get();
+        $category = CategoryModel::orderBy('place','ASC')->get();
+        return view('user_page.pages.cart.show_cart')->with('category_list', $category)->with('brand_list', $brand);
+     }
+     public function delete_cart_item($id_product){
+        Cart::update($id_product,0);
+        return redirect()->back();
+     }
+     public function update_cart_qty(Request $request){
+        $rowId = $request->rowId_cart;
+        $qty = $request->cart_qty;
+        Cart::update($rowId,$qty);
+        return redirect()->back();
      }
 }

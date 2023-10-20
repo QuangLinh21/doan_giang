@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BrandModel;
 use App\Models\CategoryModel;
+use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -76,5 +78,6 @@ class CategoryController extends Controller
         DB::table('category')->where('id_category',$id_category)->update(['status'=>0]);
         return Redirect()->back()->with('message','Cập nhật trạng thái thành công')->with('error','Cập nhật trạng thái không thành công !');
     }
+    
 }
 

@@ -27,14 +27,14 @@
                         <form action="{{URL::to('/admin_login')}}" method="post" class="signin-form">
                             @csrf
                             <div class="form-group">
-                                <input type="email" name="admin_email" class="form-control"  placeholder="Username" >
-                                @error('admin_email')
+                                <input type="email" name="username" class="form-control" value="{{ old('username') }}"  placeholder="Username" >
+                                @error('username')
                                 <span style="color:red; margin-top:5px;">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input id="password-field" name="password_ad" type="password" class="form-control" placeholder="Password">
-                                @error('password_ad')
+                                <input id="password-field" name="password" type="password" class="form-control" placeholder="Password">
+                                @error('password')
                                 <span style="color:red; margin-top:5px;">{{$message}}</span>
                                 @enderror
                             </div>

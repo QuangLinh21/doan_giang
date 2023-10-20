@@ -63,7 +63,7 @@
                                     <td class="nowrap">{{ $item->id_category }}</td>
                                     <td class="nowrap">{{ $item->id_brand }}</td>
                                     <td class="nowrap">{{ $item->name_product }}</td>
-                                    <td class="nowrap">{{ $item->price }}</td>
+                                    <td class="nowrap">{{ number_format($item['price'],0,',','.')}}</td>
                                     <td class="nowrap">{{ $item->description}}</td>
                                     <td class="nowrap text-center"><img src="{{asset($item->product_img1)}}" style="width: 40px"></td>
                                     <td class="nowrap  text-center"><img src="{{asset($item->product_img2)}}" style="width: 40px"></td>

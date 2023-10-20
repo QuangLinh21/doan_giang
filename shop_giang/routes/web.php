@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OptionController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,7 +53,41 @@ Route::post('/update-product/{id_product}',[ProductController::class,'update_pro
 Route::get('/delete-product/{id_product}',[ProductController::class,'delete_product']);
 Route::get('/active-product/{id_product}',[ProductController::class,'active_product']);
 Route::get('/unactive-product/{id_product}',[ProductController::class,'unactive_product']);
-
-
+//admin color
+Route::get('/admin_color',[OptionController::class,'admin_color']);
+Route::get('/create_color_product',[OptionController::class,'create_color']);
+Route::post('/add-color',[OptionController::class,'add_color']);
+Route::get('/active-color/{id_color}',[OptionController::class,'active_color']);
+Route::get('/unactive-color/{id_color}',[OptionController::class,'unactive_color']);
+Route::get('/delete-color/{id_color}',[OptionController::class,'delete_color']);
+//admin size
+Route::get('/admin_size',[OptionController::class,'admin_size']);
+Route::get('/create_size_product',[OptionController::class,'create_size']);
+Route::post('/add-size',[OptionController::class,'add_size']);
+Route::get('/active-size/{id_size}',[OptionController::class,'active_size']);
+Route::get('/unactive-size/{id_size}',[OptionController::class,'unactive_size']);
+Route::get('/delete-size/{id_size}',[OptionController::class,'delete_size']);
 // -------------------------------------------user--------------------------------------
 Route::get('/',[HomeController::class,'index']);
+
+//frontend
+Route::get('/category_main/{id_category}',[HomeController::class,'category_main']);
+Route::get('/brands_main/{id_brand}',[HomeController::class,'brand_main']);
+
+//account user 
+Route::get('register',[AccountController::class,'register']);
+Route::post('create_acc',[AccountController::class,'create_acc']);
+Route::post('login_user',[AccountController::class,'login_user']);
+Route::get('login_acc',[AccountController::class,'login']);
+Route::get('show_product_detail/{id_product}',[ProductController::class,'show_product_detail']);
+
+
+Route::post('quickview',[ProductController::class,'quickview']);
+
+//detail-product
+Route::get('/detail_product/{id_product}',[ProductController::class,'detail_product']);
+Route::post('save-cart','App\Http\Controllers\ProductController@save_cart');
+Route::get('show-cart','App\Http\Controllers\ProductController@show_cart');
+Route::get('delete-cart-item/{id_product}','App\Http\Controllers\ProductController@delete_cart_item');
+Route::post('update-cart-qty','App\Http\Controllers\ProductController@update_cart_qty');
+Route::get('login_checkout','App\Http\Controllers\PaymentController@login_checkout');

@@ -29,8 +29,6 @@ class ProductRequest extends FormRequest
             'img1' => 'required',
             'img2' => 'required',
             'status' => 'required',
-            'admin_email' => 'required',
-            'password_ad' => 'required',
 
         ];
     }
@@ -38,11 +36,10 @@ class ProductRequest extends FormRequest
         return [
             'name_product.required' => ':attribute không được để trống',
             'price.required' => ':attribute không được để trống',
+            'description.required' => ':attribute không được để trống',
             'price.integer' => 'Giá sản phẩm phải là số',
             'img1.required' => 'Ảnh sản phẩm không được để trống',
             'img2.required' => 'Ảnh sản phẩm không được để trống',
-            'admin_email.required'=>':attribute Không được để trống',
-            'password_ad.required'=>':attribute không được để trống',
             // 'required' => 'Các trường không được để trống',
             // 'integer' => 'Trường ::attribute phải là số',
         ];
@@ -52,10 +49,10 @@ class ProductRequest extends FormRequest
         return [
             'name_product'=>'Tên sản phầm',
             'price'=>'Giá sản phẩm',
+            'description'=>'Mô tả sản phẩm',
             'img1'=>'Ảnh sản phẩm',
             'img2'=>'Ảnh sản phẩm',
-            'admin_email'=>'Tên tài khoản',
-            'password'=>'Mật khẩu'
+           
         ];
     }
 }

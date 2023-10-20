@@ -7,7 +7,7 @@
         </div>
     </div>
     <ul id="sidebar_menu">
-        <li class>
+        <li >
             <a class="has-arrow" href="#" aria-expanded="false">
                 <div class="icon_menu">
                     <img src="{{ URL::to('../public/backend/img/menu-icon/4.svg') }}" alt>
@@ -19,7 +19,7 @@
                 <li><a href="{{ URL::to('/insert-product') }}">Thêm mới</a></li>
             </ul>
         </li>
-        <li class>
+        <li >
             <a class="has-arrow" href="#" aria-expanded="false">
                 <div class="icon_menu">
                     <img src="{{ URL::to('../public/backend/img/menu-icon/2.svg') }}" alt>
@@ -31,7 +31,7 @@
                 <li><a href="{{ URL::to('/insert-category') }}">Thêm mới</a></li>
             </ul>
         </li>
-        <li class>
+        <li >
             <a class="has-arrow" href="#" aria-expanded="false">
                 <div class="icon_menu">
                     <img src=" {{ URL::to('../public/backend/img/menu-icon/3.svg') }}" alt>
@@ -41,6 +41,30 @@
             <ul>
                 <li><a href="{{ URL::to('/admin_brand') }}">Danh sách</a></li>
                 <li><a href="{{ URL::to('/insert-brand') }}">Thêm mới</a></li>
+            </ul>
+        </li>
+        <li >
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <div class="icon_menu">
+                    <img src=" {{ URL::to('../public/backend/img/menu-icon/3.svg') }}" alt>
+                </div>
+                <span>Màu sắc</span>
+            </a>
+            <ul>
+                <li><a href="{{ URL::to('/admin_color') }}">Danh sách</a></li>
+                <li><a href="{{ URL::to('/insert-color') }}">Thêm mới</a></li>
+            </ul>
+        </li>
+        <li >
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <div class="icon_menu">
+                    <img src=" {{ URL::to('../public/backend/img/menu-icon/3.svg') }}" alt>
+                </div>
+                <span>Kích cỡ</span>
+            </a>
+            <ul>
+                <li><a href="{{ URL::to('/admin_size') }}">Danh sách</a></li>
+                <li><a href="{{ URL::to('/insert-size') }}">Thêm mới</a></li>
             </ul>
         </li>
         <li class>

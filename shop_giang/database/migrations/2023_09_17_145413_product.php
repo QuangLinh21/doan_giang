@@ -19,9 +19,11 @@ class Product extends Migration
             $table->integer('id_brand');
             $table->string('name_product');
             $table->string('price');
+            $table->text('description');
             $table->string('product_img1');
             $table->string('product_img2');
             $table->integer('status');
+            $table->string('rating');
             $table->timestamps();
         });
     }
