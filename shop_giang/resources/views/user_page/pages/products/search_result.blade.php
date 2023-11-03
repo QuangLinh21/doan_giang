@@ -55,21 +55,17 @@
                         <div class="col-lg-12">
                             <div class="axil-shop-top mb--40">
                                 <div
-                                class="category-select align-items-center justify-content-lg-end justify-content-between">
-                                <!-- Start Single Select  -->
-                                <form action="{{URL::to('filter_product')}}" method="get">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="id_cate" value="{{$id_cate}}">
-                                    <select class="single-select" id="input_filter" name="locsanpham">
-                                        <option value="asc_price_pro">Giá từ thấp tới cao</option>
-                                        <option value="desc_price_pro">Giá từ cao tới thấp</option>
-                                       
-                                        <option value="desc_product">Sản phẩm mới</option>
-                                        <option value="esc_product">Sản phẩm cũ</option>
+                                    class="category-select align-items-center justify-content-lg-end justify-content-between">
+                                    <!-- Start Single Select  -->
+                                    <span class="filter-results">Showing 1-12 of 84 results</span>
+                                    <select class="single-select">
+                                        <option>Short by Latest</option>
+                                        <option>Short by Oldest</option>
+                                        <option>Short by Name</option>
+                                        <option>Short by Price</option>
                                     </select>
-                                </form>
-                                <!-- End Single Select  -->
-                            </div>
+                                    <!-- End Single Select  -->
+                                </div>
                                 <div class="d-lg-none">
                                     <button class="product-filter-mobile filter-toggle"><i class="fas fa-filter"></i>
                                         FILTER</button>
@@ -79,7 +75,7 @@
                     </div>
                     <!-- End .row -->
                     <div class="row row--15">
-                        @foreach ($category as $item)
+                        @foreach ($result as $item)
                         <div class="col-xl-4 col-sm-6">
                             <div class="axil-product product-style-one mb--30">
                                 <div class="thumbnail">
@@ -115,7 +111,7 @@
                         @endforeach
                     </div>
                     <div class="data_Tables_paginate paging_simple_numbers mt-5">
-                        {{ $category->links('pagination::bootstrap-4') }}
+                        {{ $result->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>
@@ -125,5 +121,4 @@
     <!-- End Shop Area  -->
 </main>
  <!-- Product Quick View Modal Start -->
- @include('user_page.pages.category.modal-category')
 @endsection

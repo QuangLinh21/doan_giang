@@ -5,7 +5,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewController;
 use App\Http\Controllers\OptionController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -67,6 +69,20 @@ Route::post('/add-size',[OptionController::class,'add_size']);
 Route::get('/active-size/{id_size}',[OptionController::class,'active_size']);
 Route::get('/unactive-size/{id_size}',[OptionController::class,'unactive_size']);
 Route::get('/delete-size/{id_size}',[OptionController::class,'delete_size']);
+//new admin
+Route::get('admin_news','App\Http\Controllers\NewController@admin_news');
+Route::get('insert_new','App\Http\Controllers\NewController@insert_new');
+Route::post('add_new','App\Http\Controllers\NewController@add_new');
+Route::get('/delete-new/{new_id}',[NewController::class,'del']);
+Route::get('/active-new/{new_id}',[NewController::class,'active_new']);
+Route::get('/unactive-new/{new_id}',[NewController::class,'unactive_new']);
+Route::get('/edit_new/{new_id}',[NewController::class,'edit_new']);
+Route::PUT('/update_new/{new_id}',[NewController::class,'update_new']);
+Route::get('/tin-tuc',[NewController::class,'tintuc']);
+Route::get('/new_detail/{new_id}',[NewController::class,'new_detail']);
+Route::get('/contact_us',[NewController::class,'contact_us']);
+Route::post('/send_contact',[NewController::class,'send_contact']);
+
 // -------------------------------------------user--------------------------------------
 Route::get('/',[HomeController::class,'index']);
 
@@ -79,6 +95,7 @@ Route::get('register',[AccountController::class,'register']);
 Route::post('create_acc',[AccountController::class,'create_acc']);
 Route::post('login_user',[AccountController::class,'login_user']);
 Route::get('login_acc',[AccountController::class,'login']);
+Route::get('checkout',[AccountController::class,'checkout']);
 Route::get('show_product_detail/{id_product}',[ProductController::class,'show_product_detail']);
 
 
@@ -91,3 +108,12 @@ Route::get('show-cart','App\Http\Controllers\ProductController@show_cart');
 Route::get('delete-cart-item/{id_product}','App\Http\Controllers\ProductController@delete_cart_item');
 Route::post('update-cart-qty','App\Http\Controllers\ProductController@update_cart_qty');
 Route::get('login_checkout','App\Http\Controllers\PaymentController@login_checkout');
+
+//payment 
+Route::get('payment_show','App\Http\Controllers\PaymentController@payment_show');
+Route::get('search_product','App\Http\Controllers\ProductController@search');
+Route::get('filter_product','App\Http\Controllers\ProductController@filter_product');
+Route::get('filter_brand','App\Http\Controllers\ProductController@filter_brand');
+Route::post('address_customer','App\Http\Controllers\PaymentController@address_cus');
+Route::post('payment_end','App\Http\Controllers\PaymentController@payment_end');
+

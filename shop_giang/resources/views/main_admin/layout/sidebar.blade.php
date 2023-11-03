@@ -67,30 +67,16 @@
                 <li><a href="{{ URL::to('/insert-size') }}">Thêm mới</a></li>
             </ul>
         </li>
-        <li class>
+        <li >
             <a class="has-arrow" href="#" aria-expanded="false">
                 <div class="icon_menu">
-                    <img src="img/menu-icon/4.svg" alt>
+                    <img src=" {{ URL::to('../public/backend/img/menu-icon/3.svg') }}" alt>
                 </div>
-                <span>forms</span>
+                <span>Quản lý tin tức</span>
             </a>
             <ul>
-                <li><a href="Basic_Elements.html">Basic Elements</a></li>
-                <li><a href="Groups.html">Groups</a></li>
-                <li><a href="Max_Length.html">Max Length</a></li>
-                <li><a href="Layouts.html">Layouts</a></li>
-            </ul>
-        </li>
-        <li class>
-            <a class="has-arrow" href="#" aria-expanded="false">
-                <div class="icon_menu">
-                    <img src="img/menu-icon/5.svg" alt>
-                </div>
-                <span>Icons</span>
-            </a>
-            <ul>
-                <li><a href="Fontawesome_Icon.html">Fontawesome Icon</a></li>
-                <li><a href="themefy_icon.html">themefy icon</a></li>
+                <li><a href="{{ URL::to('/admin_news') }}">Danh sách</a></li>
+                <li><a href="{{ URL::to('/insert_new') }}">Thêm mới</a></li>
             </ul>
         </li>
     </ul>

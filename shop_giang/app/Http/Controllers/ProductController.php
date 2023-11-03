@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CommonModel;
 use App\Models\BrandModel;
 use App\Models\CategoryModel;
 use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
+use App\Models\SizeModel;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Cart;
+use Illuminate\Support\Facades\Session;
+
 class ProductController extends Controller
 {
     public function admin_product(Request $request){
@@ -22,46 +26,49 @@ class ProductController extends Controller
     public function create_product(){
         $id_cate = CategoryModel::select('id_category','name_category')->get();
         $id_brand = BrandModel::select('id_brand','name_brand')->get();
-        return view('main_admin.page.create_product')->with('category',$id_cate)->with('brand',$id_brand);
+        $size = SizeModel::get();
+        return view('main_admin.page.create_product')->with('category',$id_cate)->with('brand',$id_brand)->with('size',$size);
     }
     public function add_product(ProductRequest $request){
+        // Tạo một sản phẩm mới
         $product = new ProductModel();
-        $product['name_product'] = $request->name_product;
-        $product['id_category'] = $request->id_cate;
-        $product['id_brand'] = $request->id_brand;
-        $product['price'] = $request->price;
-        $product['description'] = $request->description;
-        $product['price'] = $request->price;
-        $product['product_img1'] = $request->img1;
-        $product['product_img2'] = $request->img2;
-        if($request->hasFile('img1')){
+        $product->name_product = $request->name_product;
+        $product->id_category = $request->id_cate;
+        $product->id_brand = $request->id_brand;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        $product->status = $request->status;
+    
+        if ($request->hasFile('img1')) {
             $file = $request->file('img1');
-            //dặt tên cho file img1
-            $filename = time().'_'.$file->getClientOriginalName();
-            //định nghĩa dẫn ssex upload lên
+            $filename = time() . '_' . $file->getClientOriginalName();
             $path_upload = 'uploads/products/';
-            $request->file('img1')->move($path_upload,$filename);
-            $product -> product_img1 = $path_upload.$filename;
+            $request->file('img1')->move($path_upload, $filename);
+            $product->product_img1 = $path_upload . $filename;
         }
-        if($request->hasFile('img2')){
+    
+        if ($request->hasFile('img2')) {
             $file = $request->file('img2');
-            //dặt tên cho file img2
-            $filename = time().'_'.$file->getClientOriginalName();
-            //định nghĩa dẫn ssex upload lên
+            $filename = time() . '_' . $file->getClientOriginalName();
             $path_upload = 'uploads/products/';
-            $request->file('img2')->move($path_upload,$filename);
-            $product -> product_img2 = $path_upload.$filename;
+            $request->file('img2')->move($path_upload, $filename);
+            $product->product_img2 = $path_upload . $filename;
         }
-        $product['status'] = $request->status;
+    
         $product->save();
-        if($product){
-            return redirect()->back()->with('message','Thêm mới thành công');
+    
+        // Tạo một sản phẩm chung liên quan đến sản phẩm vừa tạo
+        $common_product = new CommonModel();
+        $common_product->id_product = $product->id_product; // Lấy id của sản phẩm vừa tạo
+        $common_product->id_size = $request->id_size;
+        $common_product->save();
+        if ($product && $common_product) {
+            return redirect()->back()->with('message', 'Thêm mới thành công');
+        } else {
+            return redirect()->back()->with('error', 'Thêm mới không thành công');
         }
-        else{
-            return redirect()->back()->with('error','Thêm mới không thành công');
-        }
-            
     }
+    
     public function edit_product($id_product){
          $edit_product = ProductModel::find($id_product);
         // $edit_product = ProductModel::where('id_product',$id_product)->first();
@@ -71,7 +78,7 @@ class ProductController extends Controller
         return view('main_admin.page.edit_product',compact('edit_product','id_cate','id_brand'));
     }
     public function update_product(Request $request, $id_product){
-        dd($id_product);
+        // dd($id_product);
         $product = ProductModel::findorFail($id_product);
         $product->name_product = $request->input('name_product');
         $product->id_category = $request->input('id_cate');
@@ -196,4 +203,77 @@ class ProductController extends Controller
         Cart::update($rowId,$qty);
         return redirect()->back();
      }
+     public function search(Request $request){
+        $key_word = $request->keyword;
+        $brand = BrandModel::orderBy('place','ASC')->get();
+        $category = CategoryModel::orderBy('place','ASC')->get();
+        $result = ProductModel::where('name_product','like','%'.$key_word.'%')->paginate(6);
+        if($result !== ''){
+            return view('user_page.pages.products.search_result')->with('category_list', $category)->with('brand_list', $brand)->with('result',$result);
+        }
+        else{
+            echo 'Không có sản phẩm nào';
+            return view('user_page.pages.products.search_result');
+        }
+        
+     }
+     public function filter_brand(Request $request){
+        $product = $request->locsanpham;
+        $brand_product = $request->id_brand;
+        $brand = BrandModel::orderBy('place','ASC')->get();
+        $category = CategoryModel::orderBy('place','ASC')->get();
+        switch ($product){
+            case 'desc_price_pro':
+                $list_product = ProductModel::orderBy('price','desc')->where('id_brand',$brand_product)->get();
+                return view('user_page.pages.products.filter_product')->with('category_list', $category)->with('brand_list', $brand)->with('list_product',$list_product);
+                break;
+            case 'asc_price_pro':
+                $list_product = ProductModel::orderBy('price','asc')->where('id_brand',$brand_product)->get();
+                return view('user_page.pages.products.filter_product')->with('category_list', $category)->with('brand_list', $brand)->with('list_product',$list_product);
+                break;
+            case 'desc_product':
+                $list_product = ProductModel::orderBy('id_product','desc')->where('id_brand',$brand_product)->get();
+                return view('user_page.pages.products.filter_product')->with('category_list', $category)->with('brand_list', $brand)->with('list_product',$list_product);
+                break;
+            case 'esc_product':
+                 $list_product = ProductModel::orderBy('id_product','asc')->where('id_brand',$brand_product)->get();
+                return view('user_page.pages.products.filter_product')->with('category_list', $category)->with('brand_list', $brand)->with('list_product',$list_product);
+                break;
+            default:
+                echo 'Không tìm thấy sản phẩm';
+                break;
+
+        }
+
+     }
+     public function filter_product(Request $request){
+        $product = $request->locsanpham;
+        $cate_product = $request->id_cate;
+        $brand = BrandModel::orderBy('place','ASC')->get();
+        $category = CategoryModel::orderBy('place','ASC')->get();
+        switch ($product){
+            case 'desc_price_pro':
+                $list_product = ProductModel::orderBy('price','desc')->where('id_category',$cate_product)->get();
+                return view('user_page.pages.products.filter_product')->with('category_list', $category)->with('brand_list', $brand)->with('list_product',$list_product)->with('cate_product',$cate_product);
+                break;
+            case 'asc_price_pro':
+                $list_product = ProductModel::orderBy('price','asc')->where('id_category',$cate_product)->get();
+                return view('user_page.pages.products.filter_product')->with('category_list', $category)->with('brand_list', $brand)->with('list_product',$list_product)->with('cate_product',$cate_product);
+                break;
+            case 'desc_product':
+                $list_product = ProductModel::orderBy('id_product','desc')->where('id_category',$cate_product)->get();
+                return view('user_page.pages.products.filter_product')->with('category_list', $category)->with('brand_list', $brand)->with('list_product',$list_product)->with('cate_product',$cate_product);
+                break;
+            case 'esc_product':
+                 $list_product = ProductModel::orderBy('id_product','asc')->where('id_category',$cate_product)->get();
+                return view('user_page.pages.products.filter_product')->with('category_list', $category)->with('brand_list', $brand)->with('list_product',$list_product)->with('cate_product',$cate_product);
+                break;
+            default:
+                echo 'Không tìm thấy sản phẩm';
+                break;
+
+        }
+
+     }
+    
 }

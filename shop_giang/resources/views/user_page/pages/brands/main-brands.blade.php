@@ -57,13 +57,16 @@
                                 <div
                                     class="category-select align-items-center justify-content-lg-end justify-content-between">
                                     <!-- Start Single Select  -->
-                                    <span class="filter-results">Showing 1-12 of 84 results</span>
-                                    <select class="single-select">
-                                        <option>Short by Latest</option>
-                                        <option>Short by Oldest</option>
-                                        <option>Short by Name</option>
-                                        <option>Short by Price</option>
-                                    </select>
+                                    <form action="{{URL::to('filter_brand')}}" method="get">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="id_brand" value="{{$id_brand}}">
+                                        <select class="single-select" id="input_filter" name="locsanpham">
+                                            <option value="desc_price_pro">Giá từ cao tới thấp</option>
+                                            <option value="asc_price_pro">Giá từ thấp tới cao</option>
+                                            <option value="desc_product">Sản phẩm mới</option>
+                                            <option value="esc_product">Sản phẩm cũ</option>
+                                        </select>
+                                    </form>
                                     <!-- End Single Select  -->
                                 </div>
                                 <div class="d-lg-none">
@@ -79,7 +82,7 @@
                         <div class="col-xl-4 col-sm-6">
                             <div class="axil-product product-style-one mb--30">
                                 <div class="thumbnail">
-                                    <a href="single-product.html">
+                                    <a href="{{URL::to('detail_product/'.$item->id_product)}}">
                                         <img src="{{asset($item->product_img1)}}" alt="Product Images">
                                     </a>
                                     <div class="product-hover-action">
@@ -122,4 +125,5 @@
 </main>
  <!-- Product Quick View Modal Start -->
 @include('user_page.pages.brands.modal-brand')
+
 @endsection

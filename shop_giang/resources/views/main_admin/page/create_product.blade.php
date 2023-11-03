@@ -37,7 +37,14 @@
                         @endforeach
                     </select>
                 </div>
-               
+                <div class="mb-3">
+                    <label for="id_brand" class="form-label">size</label>
+                    <select name="id_size" class="form-select">
+                        @foreach ($size as $item)
+                            <option value="{{$item->id_size}}">{{$item->name_size}}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="mb-3">
                     <label for="namecategory1" class="form-label">Giá sản phẩm</label>
                     <input type="text" class="form-control" value="{{ old('price') }}" name="price" id="namecategory1">

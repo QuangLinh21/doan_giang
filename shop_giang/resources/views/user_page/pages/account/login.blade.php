@@ -11,7 +11,7 @@
             <div class="col-sm-8">
                 <div class="singin-header-btn">
                     <p>Not a member?</p>
-                    <a href="sign-up.html" class="axil-btn btn-bg-secondary sign-up-btn">Đăng ký tài khoản</a>
+                    <a href="{{URL::to('register')}}" class="axil-btn btn-bg-secondary sign-up-btn">Đăng ký tài khoản</a>
                 </div>
             </div>
         </div>
@@ -29,7 +29,13 @@
                 <div class="axil-signin-form">
                     <h3 class="title">Đăng nhập</h3>
                     <p class="b2 mb--55">Enter your detail below</p>
+                    @if (session()->has('message'))
+                    <div class="alert alert-danger">
+                        {{ session()->get('message') }}
+                        </div>
+                    @endif
                     <form class="singin-form" method="POST" action="{{URL::to('login_user')}}">
+                        @csrf
                         <div class="form-group">
                             <label>Tài khoản</label>
                             <input type="email" class="form-control" name="username" placeholder="annie@example.com">

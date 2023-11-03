@@ -28,13 +28,15 @@
                         </div>
                         <ul class="mainmenu">
                             <li>
-                                <a href="{{URL::to('/')}}">Trang chủ</a>
+                                <a href="{{ URL::to('/') }}">Trang chủ</a>
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="#">Sản phẩm</a>
                                 <ul class="axil-submenu">
                                     @foreach ($category_list as $item)
-                                        <li ><a href="{{URL::to('category_main/'.$item->id_category)}}">{{$item->name_category}}</a></li>
+                                        <li><a
+                                                href="{{ URL::to('category_main/' . $item->id_category) }}">{{ $item->name_category }}</a>
+                                        </li>
                                     @endforeach
 
                                 </ul>
@@ -43,31 +45,47 @@
                                 <a href="#">Thương Hiệu</a>
                                 <ul class="axil-submenu">
                                     @foreach ($brand_list as $item)
-                                        <li><a href="{{URL::to('brands_main/'.$item->id_brand)}}">{{$item->name_brand}}</a></li>
+                                        <li><a
+                                                href="{{ URL::to('brands_main/' . $item->id_brand) }}">{{ $item->name_brand }}</a>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </li>
-                            <li><a href="contact.html">Tin tức</a></li>
-                            <li><a href="contact.html">Liên hệ</a></li>
+                            <li><a href="{{URL::to('tin-tuc')}}">Tin tức</a></li>
+                            <li><a href="{{URL::to('contact_us')}}">Liên hệ</a></li>
                         </ul>
                     </nav>
+
                     <!-- End Mainmanu Nav -->
                 </div>
                 <div class="header-action">
                     <ul class="action-list">
                         <li class="axil-search">
-                            <a href="javascript:void(0)" class="header-search-icon" title="Search">
+                            <a href="" class="header-search-icon" title="Search">
                                 <i class="flaticon-magnifying-glass"></i>
                             </a>
                         </li>
                         <li class="wishlist">
-                            <a href="wishlist.html">
-                                <i class="flaticon-heart"></i>
+                            <?php
+                            $customer_id = Session::get('id_user');
+                            if($customer_id==null){
+                                ?>
+                            <a href="{{ URL::to('login_acc') }}">
+                                <i class="fa-brands fa-cc-amazon-pay"></i>
                             </a>
+                            <?php
+                            } else {?>
+                            <a href="{{ URL::to('payment_show') }}">
+                                <i class="fa-brands fa-cc-amazon-pay"></i>
+                            </a>
+                            <?php
+                            }
+                            ?>
+
                         </li>
                         <li class="shopping-cart">
-
-                            <a href="{{URL::to('show-cart')}}" >
+                            <a href="{{ URL::to('show-cart') }}">
+                                {{-- <span class="cart-count">3</span> --}}
                                 <i class="flaticon-shopping-cart"></i>
                             </a>
                         </li>
@@ -76,26 +94,36 @@
                                 <i class="flaticon-person"></i>
                             </a>
                             <div class="my-account-dropdown">
-                                <span class="title">QUICKLINKS</span>
                                 <ul>
+
                                     <li>
-                                        <a href="my-account.html">My Account</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Initiate return</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Support</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Language</a>
+                                        <h5 class="text-center">
+                                            @php
+                                                $full_name = Session::get('full_name');
+                                                if ($full_name) {
+                                                    echo $full_name;
+                                                }
+                                            @endphp
+                                        </h5>
                                     </li>
                                 </ul>
                                 <div class="login-btn">
-                                    <a href="{{URL::to('login_acc')}}" class="axil-btn btn-bg-primary">Login</a>
+                                    <?php
+                                     $full_name = Session::get('id_user');
+                                     if($full_name == ''){
+                                        ?>
+                                    <a href="{{ URL::to('login_acc') }}" class="axil-btn btn-bg-primary">Login</a>
+                                    <?php
+                                     }
+                                     else{  ?>
+                                    <a href="{{ URL::to('checkout') }}" class="axil-btn btn-bg-primary">Logout</a>
+                                    <?php
+                                     }
+                                    ?>
+
                                 </div>
-                                <div class="reg-footer text-center">No account yet? 
-                                    <a href="{{URL::to('register')}}" class="btn-link">REGISTER HERE.</a></div>
+                                <div class="reg-footer text-center">No account yet? <a
+                                        href="{{ URL::to('/register') }}" class="btn-link">REGISTER HERE.</a></div>
                             </div>
                         </li>
                         <li class="axil-mobile-toggle">
@@ -109,4 +137,20 @@
         </div>
     </div>
     <!-- End Mainmenu Area -->
+    <div class="header-search-modal" id="header-search-modal">
+        <button class="card-close sidebar-close"><i class="fas fa-times"></i></button>
+        <div class="header-search-wrap">
+            <div class="card-header">
+                <form action="{{ URL::to('search_product') }}" method="GET">
+                    {{ csrf_field() }}
+                    <div class="input-group">
+                        <input type="search" class="form-control" name="keyword" id="prod-search"
+                            placeholder="Write Something....">
+                        <button type="submit" class="btn-se-he" style="width:55px"><i
+                                class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </header>

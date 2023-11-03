@@ -50,4 +50,5 @@ class AdminController extends Controller
       Session::put('id_admin',null);
       return Redirect::to('/dashboard');
    }
+   
 }

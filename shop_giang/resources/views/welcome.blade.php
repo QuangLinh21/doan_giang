@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{asset('../public/frontend/assets/css/style.min.css')}}">
     <link rel="stylesheet" href="{{asset('../public/frontend/assets/css/sweetalert.css')}}">
     <link rel="stylesheet" href="{{asset('../public/frontend/assets/css/vendor/style_new.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -80,40 +81,15 @@
     <script src="{{asset('../public/frontend/assets/js/vendor/waypoints.min.js')}}"></script>
     <script src="{{asset('../public/frontend/assets/js/main.js')}}"></script>
     <script src="{{asset('../public/frontend/assets/js/sweetalert.js')}}"></script>
-
-    <!-- Main JS -->
-    <script src="{{asset('../public/frontend/assets/js/main.js')}}"></script>
-    {{-- <script type="text/javascript">
-     $(document).ready(function(){
-        $('.xemnhanh').click(function(){
-            var id_product = $(this).data('id_product');
-            var _token = $('input[name="_token"]').val();
-            console.log(id_product);
-            $.ajax({
-                url:'{{url('/quickview')}}',
-                method: 'POST',
-                dataType:"JSON",
-                data:{id_product:id_product,_token:_token},
-                success:function(data){
-                    $('#product_quickview_name').html(data.name_product);
-                    $('#product_quickview_id').html(data.id_product);
-                    $('#product_quickview_img1').html(data.product_img1);
-                    $('#product_quickview_img2').html(data.product_img2);
-                   var a= $('#product_quickview_price').html(data.price);  
-                }
-            })
-        })
-    })
-    </script> --}}
-    {{-- <script type="text/javascript">
-        $(document).ready(function(){
-            $('.add-to-cart').click(function(){
-                swal('aa');
-		 	})
-		 });
-	</script> --}}
-    
-
+    <script>
+        // Lấy thẻ select bằng id
+        const selectElement = document.getElementById('input_filter');
+        // Thêm sự kiện thay đổi giá trị vào thẻ select
+        selectElement.addEventListener('change', function() {
+            // Tự động gửi biểu mẫu khi có sự thay đổi
+            this.form.submit(); // 'this' là thẻ select
+        });
+    </script>
 </body>
 
 

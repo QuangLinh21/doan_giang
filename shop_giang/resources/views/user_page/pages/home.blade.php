@@ -30,7 +30,7 @@
                                         class="cart_product_price_{{ $item->id_product }}">
                                     <div class="axil-product product-style-one">
                                         <div class="thumbnail">
-                                            <a href="single-product.html">
+                                            <a href="{{URL::to('detail_product/'.$item->id_product)}}">
                                                 <img data-sal="zoom-out" data-sal-delay="200" data-sal-duration="800"
                                                     loading="lazy" class="main-img" src="{{ asset($item->product_img1) }}"
                                                     alt="Product Images" height="310px">
@@ -42,18 +42,13 @@
                                                     {{-- <li class="quickview"><a href="#" data-bs-toggle="modal"
                                                         data-bs-target="#xemnhanh"><i class="far fa-eye"></i></a>
                                                 </li> --}}
-                                                    <li class="quickview"><button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#xemnhanh" class="xemnhanh"
-                                                            data-id_product="{{ $item->id_product }}" name="add-to-cart"><i
-                                                                class="far fa-eye"></i></button>
-                                                    </li>
+                                                
                                                     <li class="select-option">
                                                         <a href="{{URL::to('detail_product/'.$item->id_product)}}">
                                                             Add to Cart
                                                         </a>
                                                     </li>
-                                                    <li class="wishlist"><a href="wishlist.html"><i
-                                                                class="far fa-heart"></i></a></li>
+                                                
                                                 </ul>
                                             </div>
                                         </div>

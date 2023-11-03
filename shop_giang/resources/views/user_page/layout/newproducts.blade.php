@@ -11,7 +11,7 @@
                     <div class="axil-product product-style-two">
                         <span hidden>{{$item->id_product}}<</span>
                         <div class="thumbnail">
-                            <a href="single-product.html">
+                            <a href="{{URL::to('detail_product/'.$item->id_product)}}">
                                 <img data-sal="zoom-out" data-sal-delay="200" data-sal-duration="500" src="{{asset($item->product_img1)}}" alt="Product Images">
                             </a>
                             <div class="label-block label-right">
@@ -20,26 +20,15 @@
                         </div>
                         <div class="product-content">
                             <div class="inner">
-                                <div class="color-variant-wrapper">
-                                    <ul class="color-variant">
-                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h5 class="title"><a href="single-product.html">{{$item->name_product}}</a></h5>
+                                <h5 class="title"><a href="{{URL::to('detail_product/'.$item->id_product)}}">{{$item->name_product}}</a></h5>
                                 <div class="product-price-variant">
                                     {{-- <span class="price old-price">$40</span> --}}
                                     <span class="price current-price">{{ number_format($item['price'],0,',','.')}} VNĐ</span>
                                 </div>
                                 <div class="product-hover-action">
                                     <ul class="cart-action">
-                                        <li class="quickview"><button type="button" wire:click="showDetails({{$item->id_product}})"><i class="far fa-eye"></i></button></li>
-                                        <li class="select-option"><a href="single-product.html">Add to Cart</a></li>
-                                        <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                                     
+                                        <li class="select-option"><a href="{{URL::to('detail_product/'.$item->id_product)}}">Add to Cart</a></li>
                                     </ul>
                                 </div>
                             </div>

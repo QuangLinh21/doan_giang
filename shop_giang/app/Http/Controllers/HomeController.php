@@ -20,13 +20,17 @@ class HomeController extends Controller
     public function category_main($id_category){
         $brand = BrandModel::orderBy('place','ASC')->get();
         $category = CategoryModel::orderBy('place','ASC')->get();
+        $id_cate = $id_category;
         $category_product =ProductModel::where('id_category',$id_category)->paginate(6);
-        return view('user_page.pages.category.main-category')->with('category',$category_product)->with('category_list', $category)->with('brand_list', $brand);
+        return view('user_page.pages.category.main-category')->with('category',$category_product)->with('category_list', $category)->with('brand_list', $brand)
+        ->with('id_cate', $id_cate);
     }
     public function brand_main($id_brand){
+        $id_brand = $id_brand;
         $brand = BrandModel::orderBy('place','ASC')->get();
         $category = CategoryModel::orderBy('place','ASC')->get();
         $brand_product =ProductModel::where('id_brand',$id_brand)->paginate(6);
-        return view('user_page.pages.brands.main-brands')->with('brand_product',$brand_product)->with('category_list', $category)->with('brand_list', $brand);
+        return view('user_page.pages.brands.main-brands')->with('brand_product',$brand_product)->with('category_list', $category)->with('brand_list', $brand)
+        ->with('id_brand',$id_brand);
     }
 }

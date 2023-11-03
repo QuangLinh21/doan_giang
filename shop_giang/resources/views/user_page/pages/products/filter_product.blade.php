@@ -57,13 +57,13 @@
                                 <div
                                 class="category-select align-items-center justify-content-lg-end justify-content-between">
                                 <!-- Start Single Select  -->
+                               
                                 <form action="{{URL::to('filter_product')}}" method="get">
                                     {{ csrf_field() }}
-                                    <input type="hidden" name="id_cate" value="{{$id_cate}}">
+                                    <input type="hidden" name="id_cate" value="{{$cate_product}}">
                                     <select class="single-select" id="input_filter" name="locsanpham">
-                                        <option value="asc_price_pro">Giá từ thấp tới cao</option>
                                         <option value="desc_price_pro">Giá từ cao tới thấp</option>
-                                       
+                                        <option value="asc_price_pro">Giá từ thấp tới cao</option>
                                         <option value="desc_product">Sản phẩm mới</option>
                                         <option value="esc_product">Sản phẩm cũ</option>
                                     </select>
@@ -79,7 +79,7 @@
                     </div>
                     <!-- End .row -->
                     <div class="row row--15">
-                        @foreach ($category as $item)
+                        @foreach ($list_product as $item)
                         <div class="col-xl-4 col-sm-6">
                             <div class="axil-product product-style-one mb--30">
                                 <div class="thumbnail">
@@ -114,9 +114,9 @@
                         </div>
                         @endforeach
                     </div>
-                    <div class="data_Tables_paginate paging_simple_numbers mt-5">
-                        {{ $category->links('pagination::bootstrap-4') }}
-                    </div>
+                    {{-- <div class="data_Tables_paginate paging_simple_numbers mt-5">
+                        {{ $result->links('pagination::bootstrap-4') }}
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -125,5 +125,4 @@
     <!-- End Shop Area  -->
 </main>
  <!-- Product Quick View Modal Start -->
- @include('user_page.pages.category.modal-category')
 @endsection
