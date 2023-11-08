@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\LoginRequest;
+use App\Models\ContactModel;
 
 session_start();
 class AdminController extends Controller
@@ -27,7 +28,7 @@ class AdminController extends Controller
    public function dashboard(){
       return view('main_admin.layout.admin_login');
    }
-   public function admin_dashboard(LoginRequest $request)
+   public function admin_dashboard(Request $request)
    {
 
       $admin_email = $request->username;
@@ -50,5 +51,23 @@ class AdminController extends Controller
       Session::put('id_admin',null);
       return Redirect::to('/dashboard');
    }
+   public function admin_contact(Request $request){
+      $key = $request->search;
+      $this->check_login();
+      $list_contact = ContactModel::where('name','like','%'.$key.'%')->paginate(5)->appends(['search'=>$key]);
+      return view('main_admin.page.admin_contact.list_contact',compact('list_contact'));
+
+   }
+   public function delete_contact($contact_id){
+      // $data = CategoryModel::destroy($id_category);
+      $delete = DB::table('nv_contact')->where('contact_id',$contact_id)->delete();
+      if( $delete){
+          return Redirect()->back()->with('message','Xóa danh mục thành công');
+      }
+      else
+      {
+          return Redirect()->back()->with('error','Xóa danh mục không thành công');
+      }
+  }
    
 }

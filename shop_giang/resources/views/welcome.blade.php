@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{asset('../public/frontend/assets/css/style.min.css')}}">
     <link rel="stylesheet" href="{{asset('../public/frontend/assets/css/sweetalert.css')}}">
     <link rel="stylesheet" href="{{asset('../public/frontend/assets/css/vendor/style_new.css')}}">
+    <script src="{{asset('../public/frontend/assets/js/vendor/jquery.js')}}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
@@ -63,7 +64,7 @@
     <!-- Modernizer JS -->
     <script src="{{asset('../public/frontend/assets/js/vendor/modernizr.min.js')}}"></script>
     <!-- jQuery JS -->
-    <script src="{{asset('../public/frontend/assets/js/vendor/jquery.js')}}"></script>
+    
     <!-- Bootstrap JS -->
     <script src="{{asset('../public/frontend/assets/js/vendor/popper.min.js')}}"></script>
     <script src="{{asset('../public/frontend/assets/js/vendor/bootstrap.min.js')}}"></script>

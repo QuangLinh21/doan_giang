@@ -72,11 +72,35 @@
                 <div class="icon_menu">
                     <img src=" {{ URL::to('../public/backend/img/menu-icon/3.svg') }}" alt>
                 </div>
+                <span>Hóa đơn</span>
+            </a>
+            <ul>
+                <li><a href="{{ URL::to('/cus_order') }}">Danh sách</a></li>
+                <li><a href="{{ URL::to('/insert-size') }}">Thêm mới</a></li>
+            </ul>
+        </li>
+        <li >
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <div class="icon_menu">
+                    <img src=" {{ URL::to('../public/backend/img/menu-icon/3.svg') }}" alt>
+                </div>
                 <span>Quản lý tin tức</span>
             </a>
             <ul>
                 <li><a href="{{ URL::to('/admin_news') }}">Danh sách</a></li>
-                <li><a href="{{ URL::to('/insert_new') }}">Thêm mới</a></li>
+                
+            </ul>
+        </li>
+        <li >
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <div class="icon_menu">
+                    <img src=" {{ URL::to('../public/backend/img/menu-icon/3.svg') }}" alt>
+                </div>
+                <span>Liên hệ</span>
+            </a>
+            <ul>
+                <li><a href="{{ URL::to('/admin_contact') }}">Danh sách</a></li>
+
             </ul>
         </li>
     </ul>

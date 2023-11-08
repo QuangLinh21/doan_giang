@@ -6,15 +6,28 @@ use App\Models\BrandModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+session_start();
 
 class BrandController extends Controller
 {
+    public function check_login()
+    {
+       $id_admin = Session::get('id_admin');
+       if ($id_admin) {
+          return Redirect::to('admin');
+       } else {
+          return Redirect::to('dashboard')->send();
+       }
+    }
     public function admin_brand(Request $request){
+        $this->check_login();
         $key = $request->search;
         $list_brand=BrandModel::where('name_brand','like','%'.$key.'%')->paginate(5)->appends(['search'=>$key]);
         return view('main_admin.page.admin_brand',compact('list_brand',$list_brand));
     }
     public function insert_brand(){
+        $this->check_login();
         return view('main_admin.page.create_brand');
     }
     public function add_brand(Request $request){
@@ -38,6 +51,7 @@ class BrandController extends Controller
         }
     }
     public function edit_brand($id_brand){
+        $this->check_login();
         $edit_brand= DB::table('brand')->where('id_brand',$id_brand)->get();
         return view('main_admin.page.edit_brand',compact('edit_brand',$edit_brand));
     }

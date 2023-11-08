@@ -8,10 +8,21 @@ use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-
+use Illuminate\Support\Facades\Session;
+session_start();
 class CategoryController extends Controller
 {
+    public function check_login()
+    {
+       $id_admin = Session::get('id_admin');
+       if ($id_admin) {
+          return Redirect::to('admin');
+       } else {
+          return Redirect::to('dashboard')->send();
+       }
+    }
     public function admin_cate(Request $request){
+        $this->check_login();
         $key=$request->search;
         $all_cate=CategoryModel::where('name_category','like','%'.$key.'%')->paginate(5)->appends(['search'=>$key]);
         return view('main_admin.page.admin_category')->with('all_cate',$all_cate);
@@ -47,6 +58,7 @@ class CategoryController extends Controller
         return Redirect()->back()->with('message','Xóa danh mục thành công')->with('error','Xóa danh mục không thành công');
     }
     public function edit_category($id_category){
+        $this->check_login();
         $edit_cate = DB::table('category')->where('id_category',$id_category)->get();
         return view('main_admin.page.edit_category',compact('edit_cate',$edit_cate));
     }

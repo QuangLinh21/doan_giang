@@ -31,7 +31,7 @@
                                             </div>
                                         </div>
                                         <div class="thumbnail">
-                                            <img src="{{ asset($item->product_img2) }}" alt="Product Images" ">
+                                            <img src="{{ asset($item->product_img2) }}" alt="Product Images" >
                                             <div class="label-block label-right">
                                                 <div class="product-badget">20% OFF</div>
                                             </div>

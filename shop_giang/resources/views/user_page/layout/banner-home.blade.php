@@ -6,7 +6,7 @@
                     <div class="slider-content-activation-one">
                         <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="400" data-sal-duration="800">
                             <span class="subtitle"><i class="fas fa-fire"></i> Hot Deal In This Week</span>
-                            <h1 class="title">Roco Wireless Headphone</h1>
+                            <h1 class="title">Áo đội Arsenal</h1>
                             <div class="slide-action">
                                 <div class="shop-btn">
                                     <a href="shop.html" class="axil-btn btn-bg-white"><i class="fal fa-shopping-cart"></i>Shop Now</a>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="single-slide slick-slide">
                             <span class="subtitle"><i class="fas fa-fire"></i> Hot Deal In This Week</span>
-                            <h1 class="title">Smart Digital Watch</h1>
+                            <h1 class="title">Găng tay đội bóng Baca</h1>
                             <div class="slide-action">
                                 <div class="shop-btn">
                                     <a href="shop.html" class="axil-btn btn-bg-white"><i class="fal fa-shopping-cart"></i>Shop Now</a>
@@ -68,7 +68,7 @@
                         </div>
                         <div class="single-slide slick-slide">
                             <span class="subtitle"><i class="fas fa-fire"></i> Hot Deal In This Week</span>
-                            <h1 class="title">Smart Digital Watch</h1>
+                            <h1 class="title">Giày thể thao Nike</h1>
                             <div class="slide-action">
                                 <div class="shop-btn">
                                     <a href="shop.html" class="axil-btn btn-bg-white"><i class="fal fa-shopping-cart"></i>Shop Now</a>
@@ -97,37 +97,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="single-slide slick-slide">
-                            <span class="subtitle"><i class="fas fa-fire"></i> Hot Deal In This Week</span>
-                            <h1 class="title">Smart Digital Watch</h1>
-                            <div class="slide-action">
-                                <div class="shop-btn">
-                                    <a href="shop.html" class="axil-btn btn-bg-white"><i class="fal fa-shopping-cart"></i>Shop Now</a>
-                                </div>
-                                <div class="item-rating">
-                                    <div class="thumb">
-                                        <ul>
-                                            <li><img src="{{asset('../public/frontend/assets/images/others/author1.png')}}" alt="Author"></li>
-                                            <li><img src="{{asset('../public/frontend/assets/images/others/author2.png')}}" alt="Author"></li>
-                                            <li><img src="{{asset('../public/frontend/assets/images/others/author3.png')}}" alt="Author"></li>
-                                            <li><img src="{{asset('../public/frontend/assets/images/others/author4.png')}}" alt="Author"></li>
-                                        </ul>
-                                    </div>
-                                    <div class="content">
-                                        <span class="rating-icon">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fal fa-star"></i>
-                                </span>
-                                        <span class="review-text">
-                                    <span>100+</span> Reviews
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                     
                     </div>
                 </div>
             </div>
@@ -135,33 +105,21 @@
                 <div class="main-slider-large-thumb">
                     <div class="slider-thumb-activation-one axil-slick-dots">
                         <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="600" data-sal-duration="1500">
-                            <img src="{{asset('../public/frontend/assets/images/product/product-38.png')}}" alt="Product">
-                            <div class="product-price">
-                                <span class="text">From</span>
-                                <span class="price-amount">$49.00</span>
-                            </div>
+                            <img src="{{asset('../public/images/ao_nen.png')}}" alt="Product">
+                           
                         </div>
                         <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="600" data-sal-duration="1500">
-                            <img src="{{asset('../public/frontend/assets/images/product/product-39.png ')}}" alt="Product">
-                            <div class="product-price">
-                                <span class="text">From</span>
-                                <span class="price-amount">$49.00</span>
-                            </div>
+                            <img src="{{asset('../public/images/gang_nen.png')}}" alt="Product">
+                           
                         </div>
                         <div class="single-slide slick-slide">
-                            <img src="{{asset('../public/frontend/assets/images/product/product-38.png ')}}" alt="Product">
+                            <img src="{{asset('../public/images/giay_nen.png')}}" alt="Product">
                             <div class="product-price">
                                 <span class="text">From</span>
                                 <span class="price-amount">$49.00</span>
                             </div>
                         </div>
-                        <div class="single-slide slick-slide">
-                            <img src="{{asset('../public/frontend/assets/images/product/product-39.png ')}}" alt="Product">
-                            <div class="product-price">
-                                <span class="text">From</span>
-                                <span class="price-amount">$49.00</span>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

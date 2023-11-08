@@ -23,21 +23,6 @@
             </ul>
         </div>
     </div>
-    <div class="toggle-list product-price-range active">
-        <h6 class="title">PRICE</h6>
-        <div class="shop-submenu">
-            <ul>
-                <li class="chosen"><a href="#">30</a></li>
-                <li><a href="#">5000</a></li>
-            </ul>
-            <form action="#" class="mt--25">
-                <div id="slider-range"></div>
-                <div class="flex-center mt--20">
-                    <span class="input-range">Price: </span>
-                    <input type="text" id="amount" class="amount-range" readonly>
-                </div>
-            </form>
-        </div>
-    </div>
+   
     <button class="axil-btn btn-bg-primary">All Reset</button>
 </div>

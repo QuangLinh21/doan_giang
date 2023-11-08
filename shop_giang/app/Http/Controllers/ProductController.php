@@ -13,10 +13,20 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Cart;
 use Illuminate\Support\Facades\Session;
-
+session_start();
 class ProductController extends Controller
 {
+    public function check_login()
+    {
+       $id_admin = Session::get('id_admin');
+       if ($id_admin) {
+          return Redirect::to('admin');
+       } else {
+          return Redirect::to('dashboard')->send();
+       }
+    }
     public function admin_product(Request $request){
+        $this->check_login();
         $key = $request->search;
         $list_product=ProductModel::where('name_product','like','%'.$key.'%')->paginate(5)->appends(['search'=>$key]);
         return view('main_admin.page.admin_product',compact('list_product',$list_product));
@@ -24,6 +34,7 @@ class ProductController extends Controller
 
     }
     public function create_product(){
+        $this->check_login();
         $id_cate = CategoryModel::select('id_category','name_category')->get();
         $id_brand = BrandModel::select('id_brand','name_brand')->get();
         $size = SizeModel::get();
@@ -70,6 +81,7 @@ class ProductController extends Controller
     }
     
     public function edit_product($id_product){
+        $this->check_login();
          $edit_product = ProductModel::find($id_product);
         // $edit_product = ProductModel::where('id_product',$id_product)->first();
         $id_cate = CategoryModel::select('id_category','name_category')->get();

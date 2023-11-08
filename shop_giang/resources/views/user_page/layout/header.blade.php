@@ -9,13 +9,13 @@
         <div class="container">
             <div class="header-navbar">
                 <div class="header-brand">
-                    <a href="{{ URL::to('/') }}" class="logo logo-dark">
-                        <img src="{{ URL::to('../public/frontend/assets/images/logo/logo.png') }}" alt="Site Logo">
+                    <a href="{{ URL::to('/') }}" class="logo logo-dark" style="font-size: 22px;
+                    font-weight: bold;
+                    font-family: cursive;
+                    color:#3577F0">
+                        TruongGiang_Store
                     </a>
-                    <a href="{{ URL::to('/') }}" class="logo logo-light">
-                        <img src="{{ URL::to('../public/frontend/assets/images/logo/logo-light.png') }}"
-                            alt="Site Logo">
-                    </a>
+                   
                 </div>
                 <div class="header-main-nav">
                     <!-- Start Mainmanu Nav -->

@@ -38,6 +38,9 @@ Route::post('/update-cate/{id_category}',[CategoryController::class,'update_cate
 Route::get('/active-cate/{id_category}',[CategoryController::class,'active_cate']);
 Route::get('/unactive-cate/{id_category}',[CategoryController::class,'unactive_cate']);
 //admin brand
+Route::get('admin_contact',[AdminController::class,'admin_contact']);
+Route::get('delete_contact/{contact_id}',[AdminController::class,'delete_contact']);
+//admin contact
 Route::get('/admin_brand',[BrandController::class,'admin_brand']);
 Route::get('/insert-brand',[BrandController::class,'insert_brand']);
 Route::post('/add-brand',[BrandController::class,'add_brand']);
@@ -115,5 +118,9 @@ Route::get('search_product','App\Http\Controllers\ProductController@search');
 Route::get('filter_product','App\Http\Controllers\ProductController@filter_product');
 Route::get('filter_brand','App\Http\Controllers\ProductController@filter_brand');
 Route::post('address_customer','App\Http\Controllers\PaymentController@address_cus');
-Route::post('payment_end','App\Http\Controllers\PaymentController@payment_end');
+Route::get('delete_address_user/{id_shipping}','App\Http\Controllers\PaymentController@delete_address_user');
+Route::post('order_product','App\Http\Controllers\PaymentController@order_product');
+Route::get('ship_code','App\Http\Controllers\PaymentController@ship_code');
+Route::get('cus_order','App\Http\Controllers\PaymentController@cus_order');
+Route::get('bill_detail/{order_id}','App\Http\Controllers\PaymentController@bill_detail');
 

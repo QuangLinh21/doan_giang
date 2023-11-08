@@ -1,8 +1,14 @@
 @extends('welcome')
 @section('content')
+<style>
+    .container_set{
+        display: block;
+    }
+</style>
     <?php
     $customer_id = Session::get('id_user');
-    ?>
+    $content = Cart::content();
+   ?>
     <div class="header-top-campaign">
         <div class="container">
             <div class="row justify-content-center">
@@ -78,11 +84,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <?php
-                        $content = Cart::content();
-                        // print_r($content);
-                        ?>
+                    <div class="col-lg-6 container_set" id="container_null">
                         <div class="axil-order-summery order-checkout-summery">
                             <h5 class="title mb--20">Your Order</h5>
                             <?php
@@ -95,11 +97,12 @@
                             <?php
 							    } else {
                                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Xử lý form
-        // Thêm mã xử lý form ở đây
-    } else {
+                                // Xử lý form
+                                // Thêm mã xử lý form ở đây
+                              } else {
                                 ?>
-                            <form action="{{URL::to('payment_end')}}" method="post">
+                            <form action="{{ URL::to('order_product') }}" method="post">
+                                {{ csrf_field() }}
                                 <div class="summery-table-wrap">
                                     <table class="table summery-table">
                                         <thead>
@@ -143,10 +146,13 @@
                                         <h3 class="mb-3">Địa chỉ nhận hàng</h3>
                                         @foreach ($address_cus as $item)
                                             <div class="">
+                                                <a href="{{URL::to('delete_address_user/'.$item->id_shipping)}}"  onclick="return confirm('Bạn có muốn xóa danh mục này không?')">Xóa</a> || 
                                                 <input type="radio" id="address_{{ $item->id_shipping }}"
-                                                    name="address_cus" value="{{ $item->id_shipping }}">
-                                                <label for="address_{{ $item->id_shipping }}">{{ $item->customer_name }} ||
+                                                    name="address_cus" value="{{ $item->id_shipping }}" checked>
+                                                <label for="address_{{ $item->id_shipping }}">{{ $item->customer_name }}
+                                                    ||
                                                     {{ $item->customer_phone }} ||{{ $item->customer_address }} </label>
+                                                   
                                             </div>
                                         @endforeach
 
@@ -155,11 +161,11 @@
                                     <div class="single-payment">
                                         <h3 class="mb-3">Hình thức thanh toán</h3>
                                         <div class="">
-                                            <input type="radio" id="ship_code" name="address_cus" value="1">
+                                            <input type="radio" id="ship_code" name="ship" value="1" checked>
                                             <label for="ship_code">Ship code</label>
                                         </div>
                                         <div>
-                                            <input type="radio" id="pay" name="address_cus" value="1">
+                                            <input type="radio" id="pay" name="ship" value="2">
                                             <label for="pay">Thanh toán ví điện tử</label>
                                         </div>
                                     </div>
@@ -180,4 +186,14 @@
         <!-- End Checkout Area  -->
 
     </main>
+    <script>
+        // Biến cần kiểm tra
+        var content = <?php echo json_encode($content); ?>;
+
+        // Kiểm tra nếu biến content bằng null thì ẩn thẻ container
+        if (content === null) {
+            document.getElementById("container_null").style.display = "none";
+        }
+    </script>
+   
 @endsection

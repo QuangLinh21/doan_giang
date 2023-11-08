@@ -178,7 +178,7 @@
     <script src="{{asset('../public/backend/vendors/datatable/js/pdfmake.min.js')}}"></script>
     <script src="{{asset('../public/backend/vendors/datatable/js/vfs_fonts.js')}}"></script>
     <script src="{{asset('../public/backend/vendors/datatable/js/buttons.html5.min.js')}}"></script>
-    {{-- <script>
+    <script>
 		ClassicEditor
 		.create(document.querySelector('#ckeditor1'))
 		.catch(error=>{
@@ -193,6 +193,15 @@
 			console.error(error);
 		})
 
-	</script> --}}
+	</script>
+    <script>
+		ClassicEditor
+		.create(document.querySelector('#ckeditornew_cr'))
+		.catch(error=>{
+			console.error(error);
+		})
+
+	</script>
+	
 </body>
 </html>

@@ -10,18 +10,32 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Session;
+session_start();
 
 class NewController extends Controller
 {
+    public function check_login()
+    {
+       $id_admin = Session::get('id_admin');
+       if ($id_admin) {
+          return Redirect::to('admin');
+       } else {
+          return Redirect::to('dashboard')->send();
+       }
+    }
     public function admin_news(Request $request){
+        $this->check_login();
         $key=$request->search;
         $new = NewModel::where('new_title','like','%'.$key.'%')->paginate(5)->appends(['search'=>$key]);
         return view('main_admin.page.list_news.news')->with('new',$new);
     }
     public function insert_new(){
+        $this->check_login();
         return view('main_admin.page.list_news.create_new');
     }
     public function add_new(Request $request){
+      
         $data = new NewModel();
         $data['new_title'] = $request->new_title;
         $data['new_des'] = $request->new_des;
@@ -59,6 +73,7 @@ class NewController extends Controller
         return view('main_admin.page.list_news.edit_new',compact('edit_new'));
      }
      public function update_new(Request $request,$new_id){
+        $this->check_login();
             $new = NewModel::findorFail($new_id);
         $new['new_title'] = $request->new_title;
         $new['new_des'] = $request->new_des;
@@ -100,7 +115,7 @@ class NewController extends Controller
         $contact = new ContactModel();
         $contact['name'] = $request->name;
         $contact['phone'] = $request->phone;
-        $contact['email'] = $request->email;
+        // $contact['email'] = $request->email_contact;
         $contact['message'] = $request->message;
         $contact->save();
         return Redirect()->back()->with('message','Giửi thành công');

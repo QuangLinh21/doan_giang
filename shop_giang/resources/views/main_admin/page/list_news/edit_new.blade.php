@@ -27,7 +27,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Nội dung</label>
-                    <textarea class="form-control" id="ckeditornew"  name="new_content" rows="3">{{$edit_new->new_content}}</textarea>
+                    <textarea class="form-control" id="ckeditornew_cr"  name="new_content" rows="3">{{$edit_new->new_content}}</textarea>
                   
                 </div>
                 <div class="mb-3">

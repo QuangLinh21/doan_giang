@@ -18,38 +18,61 @@
                                     {{ session()->get('error') }}
                                 </div>
                             @endif
-                            <form id="contact-form" method="POST" action="{{ URL::to('send_contact') }}"
-                                class="axil-contact-form">
+                            {{-- <form action="{{URL::to('send_contact')}}"  method="POST"   class="axil-contact-form">
+                                {{ csrf_field() }}
                                 <div class="row row--10">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="contact-name">Họ và tên <span>*</span></label>
-                                            <input type="text" name="name" required id="contact-name">
+                                            <input type="text" name="name" >
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="contact-phone">Phone <span>*</span></label>
-                                            <input type="text" name="phone" required id="contact-phone">
+                                            <input type="text" name="phone"  >
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label for="contact-email">E-mail <span>*</span></label>
-                                            <input type="email" name="email" required id="contact-email">
-                                        </div>
-                                    </div>
+                                   
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="contact-message">Your Message</label>
-                                            <textarea name="message" required id="message" cols="1" rows="2"></textarea>
+                                            <textarea name="message"  cols="1" rows="2"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group mb--0">
-                                            <button name="submit" type="submit" id="submit"
-                                                class="axil-btn btn-bg-primary">Gửi liên hệ</button>
+                                            <input type="submit" class="axil-btn btn-bg-primary" value="Gửi liên hệ">
                                         </div>
+                                    </div>
+                                </div>
+                            </form> --}}
+                            <form action="{{URL::to('send_contact')}}" method="post">
+                                {{ csrf_field() }}
+                               <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="contact-name">Họ và tên <span>*</span></label>
+                                        <input type="text" name="name" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="contact-phone">Phone <span>*</span></label>
+                                        <input type="text" name="phone"  >
+                                    </div>
+                                </div>
+                               </div>
+                               
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="contact-message">Your Message</label>
+                                        <textarea name="message"  cols="1" rows="2"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group mb--0">
+                                        <input type="submit" class="axil-btn btn-bg-primary" value="Gửi liên hệ">
                                     </div>
                                 </div>
                             </form>
@@ -57,11 +80,10 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="contact-location mb--40">
-                            <h4 class="title mb--20">Our Store</h4>
-                            <span class="address mb--20">8212 E. Glen Creek Street Orchard Park, NY 14127, United States of
-                                America</span>
-                            <span class="phone">Phone: +123 456 7890</span>
-                            <span class="email">Email: Hello@etrade.com</span>
+                            <h4 class="title mb--20">Cửa hàng của chúng tôi</h4>
+                            <span class="address mb--20">Ngõ Chùa Hưng Ký - Minh Khai - Hai Bài Trưng Hà Nội</span>
+                            <span class="phone">Điện thoại: 099999999</span>
+                            <span class="email">Email: truonggiang@gmail.com</span>
                         </div>
                         <div class="contact-career mb--40">
                             <h4 class="title mb--20">Careers</h4>
